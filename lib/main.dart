@@ -8,6 +8,7 @@ import 'package:app/screens/profile.dart';
 import 'package:app/screens/register.dart';
 import 'package:app/screens/articles.dart';
 import 'package:app/screens/elements.dart';
+import 'package:app/screens/SplashScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
         initialRoute: "/onboarding",
         debugShowCheckedModeBanner: false,
         routes: <String, WidgetBuilder>{
-          "/onboarding": (BuildContext context) => new Onboarding(),
+          //"/onboarding": (BuildContext context) => new Onboarding(), 
+          "/onboarding": (BuildContext context) => new SplashScreen(), 
           "/home": (BuildContext context) => new Home(),
           "/profile": (BuildContext context) => new Profile(),
           "/articles": (BuildContext context) => new Articles(),
