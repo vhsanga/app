@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:app/screens/login.dart';
 import 'package:flutter/material.dart';
-import 'package:app/screens/onboarding.dart';
+import 'dart:ui';
+
 
 class SplashScreen extends StatefulWidget {
   final Color backgroundColor = Colors.white;
@@ -14,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
 
   String _versionName = 'V1.0';
-  final splashDelay = 5;
+  final splashDelay = 2;
 
   @override
   void initState() {
@@ -29,62 +31,63 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Onboarding()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Login() ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: InkWell(
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+        body: Stack(children: <Widget>[
+      Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/img/onboard-background.png"),
+                  fit: BoxFit.cover))),
+      Padding(
+        padding:
+            const EdgeInsets.only(top: 73, left: 32, right: 32, bottom: 16),
+        child: Container(
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Expanded(
-                  flex: 7,
-                  child: Container(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset(
-                        'images/img_splash.png',
-                        height: 300,
-                        width: 300,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                      ),
-                    ],
-                  )),
+                Image.asset("assets/img/argon-logo-onboarding.png", scale: 1),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 48.0),
+                      child: Text.rich(TextSpan(
+                        text: "Mi app",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 58,
+                            fontWeight: FontWeight.w600),
+                      )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24.0),
+                      child: Text("Fully coded Flutter widgets and screens.",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w200)),
+                    ),
+                  ],
                 ),
-                Expanded(
-                  child: Column(
-                    children: <Widget>[
-                      CircularProgressIndicator(),
-                      Container(
-                        height: 10,
-                      ),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            Spacer(),
-                            Text(_versionName),
-                            Spacer(
-                              flex: 4,
-                            ),
-                            Text('androing'),
-                            Spacer(),
-                          ])
-                    ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: SizedBox(
+                    width: double.infinity,                    
                   ),
-                ),
+                )
               ],
             ),
-          ],
+          ),
         ),
-      ),
-    );
+      )
+    ]));
   }
 }
